@@ -1,8 +1,10 @@
 import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "./components/ThemeProvider";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import Layout from "./components/Layout";
 
 function Router() {
   return (
@@ -15,10 +17,14 @@ function Router() {
 
 function App() {
   return (
-    <TooltipProvider>
-      <Toaster />
-      <Router />
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="nexusai-theme">
+      <TooltipProvider>
+        <Toaster />
+        <Layout>
+          <Router />
+        </Layout>
+      </TooltipProvider>
+    </ThemeProvider>
   );
 }
 
